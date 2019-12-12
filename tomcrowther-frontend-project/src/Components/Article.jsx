@@ -5,7 +5,9 @@ import Comments from './Comments';
 class Article extends Component {
     state = {
         article: "",
-        isLoading: true
+        isLoading: true,
+        comment: false,
+        voted: false
     }
 
     componentDidMount = () => {
@@ -19,17 +21,19 @@ class Article extends Component {
 
     handleVote = (event) => {
         const { id, name } = event.target;
-        patchArticle(id, name).then(newArticle => {
-            this.setState((currentState) => {
-                const newVote = parseInt(currentState.article.votes) + parseInt(name);
-                currentState.article.votes = newVote;
-                return { article: currentState.article }
-            })
+        patchArticle(id, name)
+        this.setState((currentState) => {
+            const newVote = parseInt(currentState.article.votes) + parseInt(name);
+            currentState.article.votes = newVote;
+            return {
+                article: currentState.article,
+                voted: true
+            }
         })
     }
 
     render() {
-        let { article, isLoading } = this.state;
+        let { article, isLoading, voted } = this.state;
         if (isLoading === true) return <h2>Loading...</h2>
         return (
             <div>
@@ -37,8 +41,8 @@ class Article extends Component {
                     <h2>{article.title}</h2>
                     <div className="flexRowCentre">
                         <p className="Votes">Votes: {article.votes}</p>
-                        <button id={article.article_id} name={1} onClick={this.handleVote} className="votebtn">Upvote</button>
-                        <button id={article.article_id} name={-1} onClick={this.handleVote} className="votebtnangry">DownVote</button>
+                        {this.props.user && <button disabled={voted} id={article.article_id} name={1} onClick={this.handleVote} className="votebtn">👍</button>}
+                        {this.props.user && <button disabled={voted} id={article.article_id} name={-1} onClick={this.handleVote} className="votebtnangry">👎</button>}
                     </div>
                     <p>Topic: {article.topic}</p>
                     <p>Author: {article.author}</p>
@@ -47,7 +51,7 @@ class Article extends Component {
                 </div>
                 <div className='container'>
                     <h2>Comments:</h2>
-                    <Comments article_id={article.article_id} />
+                    <Comments user={this.props.user} article_id={article.article_id} />
                 </div>
             </div>
         );

@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const getArticles = (topic, p) => {
-    return axios.get('https://tom-crowthers-ncoders-project.herokuapp.com/api/articles', { params: { topic, p } })
+export const getArticles = (topic, p, sort_by) => {
+    console.log(topic, p, sort_by)
+    return axios.get('https://tom-crowthers-ncoders-project.herokuapp.com/api/articles', { params: { topic, p, sort_by } })
         .then(({ data }) => {
-            console.dir(data)
             return data.articles
         })
 }
@@ -12,6 +12,13 @@ export const getTopics = () => {
     return axios.get('https://tom-crowthers-ncoders-project.herokuapp.com/api/topics')
         .then(({ data }) => {
             return data.topics
+        })
+}
+
+export const getUsers = () => {
+    return axios.get('https://tom-crowthers-ncoders-project.herokuapp.com/api/users')
+        .then(({ data }) => {
+            return data.users
         })
 }
 
@@ -40,5 +47,20 @@ export const patchArticle = (id, name) => {
     return axios.patch(`https://tom-crowthers-ncoders-project.herokuapp.com/api/articles/${id}`, { inc_votes: name })
         .then(({ data }) => {
             return data.article
+        })
+}
+
+export const postComment = (artId, username, body) => {
+    username = username.split(' ').join('_');
+    return axios.post(`https://tom-crowthers-ncoders-project.herokuapp.com/api/articles/${artId}/comments`, { username, body })
+        .then(({ data }) => {
+            return data.comment
+        })
+}
+
+export const deleteComment = (comment_id) => {
+    return axios.delete(`https://tom-crowthers-ncoders-project.herokuapp.com/api/comments/${comment_id}`)
+        .then(({ data }) => {
+            return data;
         })
 }
