@@ -24,6 +24,12 @@ img {
   height: 300px;
 }
 
+.topicpic {
+  width: 400px;
+  height: 300px;
+  margin: 0 30px 30px 0;
+}
+
 .navigation {
   display: flex;
   flex-direction: row;
@@ -181,29 +187,32 @@ li:hover {
 
 .pagebtn {
   border-radius: 5px;
-  background-color: #4CAF50; 
+  background-color: rgb(53, 143, 73); 
   color: white;
   width: 100px;
   max-height: 35px;
   border-style: none;
+  border-style: solid;
+  border-color: gray;
 }
 
 .pagebtn-large {
   border-radius: 5px;
-  background-color: #4CAF50; 
+  background-color: rgb(53, 143, 73); 
   color: white;
   width: 100px;
-  border-style: none;
+  border-style: solid;
+  border-color: gray;
   height: 55px;
   margin-left: 10px;
 }
 
 .pagebtn:hover {
-  background-color: #3e8e41;
+  background-color: #16411a;
 }
 
 .pagebtn-large:hover {
-  background-color: #3e8e41;
+  background-color: #16411a;
 }
 
 .bigText {

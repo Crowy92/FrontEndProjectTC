@@ -35,18 +35,32 @@ class Article extends Component {
     render() {
         let { article, isLoading, voted } = this.state;
         if (isLoading === true) return <h2>Loading...</h2>
+        let topicpic;
+        if (article.topic === 'football') {
+            topicpic = 'https://images.pexels.com/photos/47354/the-ball-stadion-football-the-pitch-47354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
+        } else if (article.topic === 'cooking') {
+            topicpic = 'https://images.pexels.com/photos/2284166/pexels-photo-2284166.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+        } else if (article.topic === 'coding') {
+            topicpic = 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+        }
         return (
             <div>
                 <div className='container'>
+
                     <h2>{article.title}</h2>
                     <div className="flexRowCentre">
-                        <p className="Votes">Votes: {article.votes}</p>
-                        {this.props.user && <button disabled={voted} id={article.article_id} name={1} onClick={this.handleVote} className="votebtn">👍</button>}
-                        {this.props.user && <button disabled={voted} id={article.article_id} name={-1} onClick={this.handleVote} className="votebtnangry">👎</button>}
+                        <img className='topicpic' src={topicpic} />
+                        <div>
+                            <div className="flexRowCentre">
+                                <p className="Votes">Votes: {article.votes}</p>
+                                {this.props.user && <button disabled={voted} id={article.article_id} name={1} onClick={this.handleVote} className="pagebtn">˄</button>}
+                                {this.props.user && <button disabled={voted} id={article.article_id} name={-1} onClick={this.handleVote} className="pagebtn">˅</button>}
+                            </div>
+                            <p>Topic: {article.topic}</p>
+                            <p>Author: {article.author}</p>
+                            <p>Posted: {article.created_at}</p>
+                        </div>
                     </div>
-                    <p>Topic: {article.topic}</p>
-                    <p>Author: {article.author}</p>
-                    <p>Posted: {article.created_at}</p>
                     <p>{article.body}</p>
                 </div>
                 <div className='container'>

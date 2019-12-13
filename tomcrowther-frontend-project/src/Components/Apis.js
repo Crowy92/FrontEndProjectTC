@@ -4,7 +4,10 @@ export const getArticles = (topic, p, sort_by) => {
     console.log(topic, p, sort_by)
     return axios.get('https://tom-crowthers-ncoders-project.herokuapp.com/api/articles', { params: { topic, p, sort_by } })
         .then(({ data }) => {
-            return data.articles
+            return {
+                articles: data.articles,
+                total_count: data.total_count
+            }
         })
 }
 

@@ -14,13 +14,14 @@ class Commenter extends Component {
         const { user, article_id, submitComment } = this.props;
         const { comment } = this.state
         submitComment(article_id, user, comment)
+        this.setState({ comment: "" })
     }
 
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <textarea onChange={this.handleChange} placeholder="make a comment" className="bigText"></textarea>
-                <input className="dropbtn" type="submit" />
+                <textarea value={this.state.comment} onChange={this.handleChange} placeholder="make a comment" className="bigText"></textarea>
+                <button className="pagebtn" type="submit">Comment</button>
             </form>
         );
     }

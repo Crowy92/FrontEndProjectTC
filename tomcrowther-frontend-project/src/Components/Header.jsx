@@ -15,7 +15,7 @@ class Header extends Component {
                 <div className="navigation">
                     <div className="dropdown">
                         <Link to="/">
-                            <button className="dropbtn">
+                            <button className="pagebtn-large">
                                 <p >Home</p>
                             </button>
                         </Link>

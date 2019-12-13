@@ -16,6 +16,7 @@ class Userlogin extends Component {
         else {
             alert('User does not exist')
         }
+        this.setState({ username: "" })
     }
 
     handleChange = (event) => {
@@ -27,7 +28,7 @@ class Userlogin extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input onChange={this.handleChange} type="text" placeholder="username" />
+                <input value={this.state.username} onChange={this.handleChange} type="text" placeholder="username" />
                 <input className="pagebtn" type="submit" value="Login"></input>
             </form>
         );

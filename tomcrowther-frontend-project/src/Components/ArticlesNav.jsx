@@ -55,7 +55,7 @@ class ArticlesNav extends Component {
                     </div>
                 </div>
                 <div className="dropdown">
-                    <button onClick={this.submitter} className="pagebtn-large">Submit</button>
+                    <button onClick={this.submitter} className="pagebtn-large">Search</button>
                 </div>
             </div>
         );

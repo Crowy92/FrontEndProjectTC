@@ -26,10 +26,11 @@ class Articles extends Component {
     }
 
     fetchArticles = () => {
-        getArticles(this.state.topic, this.state.page, this.state.sort_by).then(articles => {
+        getArticles(this.state.topic, this.state.page, this.state.sort_by).then(({ articles, total_count }) => {
             this.setState({
                 articles,
-                isLoading: "false"
+                isLoading: "false",
+                total_count
             })
         })
     }
@@ -47,7 +48,7 @@ class Articles extends Component {
     }
 
     render() {
-        let { articles, isLoading, page } = this.state;
+        let { articles, isLoading, page, total_count } = this.state;
         if (isLoading === true) return <h2>Loading...</h2>
         return (
             <div>
@@ -73,11 +74,11 @@ class Articles extends Component {
                     })}
                 </ul>
                 <div className="flexRow">
-                    <button onClick={this.changePage} value={-1} className="pagebtn">
+                    <button disabled={page < 2} onClick={this.changePage} value={-1} className="pagebtn">
                         Previous
                     </button>
-                    <h3>Page: {page} </h3>
-                    <button onClick={this.changePage} value={1} className="pagebtn">
+                    <h3>Articles: {page * 10 - 9} to {page * 10 > total_count ? total_count : page * 10} out of {total_count}</h3>
+                    <button disabled={page > Math.floor(total_count / 10)} onClick={this.changePage} value={1} className="pagebtn">
                         Next
                     </button>
                 </div>
