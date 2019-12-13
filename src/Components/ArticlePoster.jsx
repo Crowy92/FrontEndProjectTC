@@ -28,19 +28,26 @@ class ArticlePoster extends Component {
         this.setState({ [name]: value })
     }
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault();
         const { body, title, topic } = this.state;
-        postArticle(title, body, this.props.username, topic)
+        console.log(title, body, this.props.user, topic)
+        postArticle(title, body, this.props.user, topic)
+        this.setState({
+            topic: '',
+            body: '',
+            title: '', post: true
+        })
     }
 
     render() {
-        const { isLoading, topics, body, title, topic } = this.state;
-        console.log(title, body, topic)
+        const { isLoading, topics, body, title, topic, post } = this.state;
         if (isLoading === true) return <h2>Loading...</h2>
+        if (post === true) return <h1>Article posted!</h1>
         return (
             <form className="container">
-                <input onChange={this.handleText} name='title' placeholder="article title" type="text"></input>
-                <textarea onChange={this.handleText} name='body' placeholder="article body"></textarea>
+                <input value={title} onChange={this.handleText} name='title' placeholder="article title" type="text"></input>
+                <textarea value={body} onChange={this.handleText} name='body' placeholder="article body"></textarea>
                 <div className="dropdown">
                     <button className="dropbtn">Topics</button>
                     <div className="dropdown-content">
