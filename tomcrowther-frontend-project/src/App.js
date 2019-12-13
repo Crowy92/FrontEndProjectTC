@@ -6,6 +6,7 @@ import { getUsers } from './Components/Apis'
 import User from './Components/User'
 import Articles from './Components/Articles';
 import Userlogin from './Components/Userlogin';
+import ArticlePoster from './Components/ArticlePoster'
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
@@ -42,6 +43,7 @@ class App extends Component {
           <Articles path='/' />
           <Article user={this.state.user} path='/article/:article_id' />
           <User user={this.state.user} users={this.state.users} path='/user' />
+          <ArticlePoster user={this.state.user} path='/postarticle' />
         </Router>
       </div>
     );

@@ -19,6 +19,11 @@ class Header extends Component {
                                 <p >Home</p>
                             </button>
                         </Link>
+                        {this.props.user && <Link to="/postarticle">
+                            <button className="pagebtn-large">
+                                <p >Post Article</p>
+                            </button>
+                        </Link>}
                     </div>
                     {this.props.user ? <p className="loginDone">Logged in as: <Link to="/user">{this.props.user}</Link></p> : <p className="loginPrompt">Login for more features</p>}
                 </div>

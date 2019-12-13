@@ -67,3 +67,11 @@ export const deleteComment = (comment_id) => {
             return data;
         })
 }
+
+export const postArticle = (title, body, author, topic) => {
+    author = author.split(' ').join('_');
+    return axios.post(`https://tom-crowthers-ncoders-project.herokuapp.com/api/articles`, { title, body, author, topic })
+        .then(({ data }) => {
+            return data.article
+        })
+}
