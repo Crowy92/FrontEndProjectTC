@@ -34,13 +34,17 @@ class Comments extends Component {
             }
         })
         patchComment(id, value).catch(({ response }) => {
-            this.setState(currentState => {
+            this.setState((currentState) => {
+                const updatedComments = currentState.comments.map(comment => {
+                    if (comment.comment_id.toString() === id.toString()) {
+                        comment.votes = parseInt(comment.votes) - parseInt(value)
+                        comment.voted = true
+                        comment.err = true
+                    }
+                    return comment;
+                })
                 return {
-                    err: {
-                        status: response.status || 500,
-                        msg: response.msg || "Something went wrong"
-                    },
-
+                    comments: updatedComments
                 }
             })
         })
@@ -50,6 +54,13 @@ class Comments extends Component {
         postComment(artId, username, body).then((comment) => {
             this.setState(currentState => {
                 return { comments: [comment, ...currentState.comments] }
+            })
+        }).catch(({ response }) => {
+            this.setState({
+                err: {
+                    status: response.status || 500,
+                    msg: response.msg || "Something went wrong"
+                }
             })
         })
     }
@@ -69,6 +80,7 @@ class Comments extends Component {
         return (
             <div>
                 {this.props.user && <Commenter user={this.props.user} article_id={this.props.article_id} submitComment={this.submitComment} />}
+                {err && <ErrorDisplay err={err} />}
                 <ul>
                     {comments.map(comment => {
                         const date = comment.created_at.slice(0, 10)
@@ -84,7 +96,7 @@ class Comments extends Component {
                                         {this.props.user && <button disabled={comment.voted} id={comment.comment_id} value={-1} onClick={this.handleVote} className="pagebtn">˅</button>}
                                         {this.props.user === comment.author && <button id={comment.comment_id} onClick={this.deleteComment} className="votebtnangry">🗑️</button>}
                                     </div>
-                                    {err && <ErrorDisplay err={err} />}
+                                    {comment.err && <ErrorDisplay err={comment.err} />}
                                 </div>
                             </li>
                         )
