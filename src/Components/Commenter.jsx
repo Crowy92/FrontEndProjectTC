@@ -20,7 +20,7 @@ class Commenter extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <textarea value={this.state.comment} onChange={this.handleChange} placeholder="make a comment" className="bigText"></textarea>
+                <textarea value={this.state.comment} onChange={this.handleChange} placeholder="make a comment" className="bigText" required></textarea>
                 <button className="pagebtn" type="submit">Comment</button>
             </form>
         );

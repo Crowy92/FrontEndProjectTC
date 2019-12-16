@@ -9,6 +9,7 @@ import Userlogin from './Components/Userlogin';
 import ArticlePoster from './Components/ArticlePoster'
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
+import ErrorDisplay from './Components/ErrorDisplay';
 
 class App extends Component {
   state = {
@@ -18,6 +19,8 @@ class App extends Component {
 
   componentDidMount = () => {
     this.findUsers();
+    const username = localStorage.getItem('username')
+    username && this.SignIn(username)
   }
 
   SignIn = (user) => {
@@ -44,6 +47,7 @@ class App extends Component {
           <Article user={this.state.user} path='/article/:article_id' />
           <User user={this.state.user} users={this.state.users} path='/user' />
           <ArticlePoster user={this.state.user} path='/postarticle' />
+          <ErrorDisplay default />
         </Router>
       </div>
     );

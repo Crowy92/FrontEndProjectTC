@@ -3,7 +3,6 @@ import { getTopics } from './Apis';
 
 class ArticlesNav extends Component {
     state = {
-
     }
 
     handleChange = (event) => {
@@ -29,7 +28,6 @@ class ArticlesNav extends Component {
     }
 
     render() {
-        console.log(this.state.sort_by)
         let { topics } = this.state;
         if (!topics) return <h2>Loading...</h2>
         return (

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getArticle, patchArticle } from './Apis';
 import Comments from './Comments';
+import ErrorDisplay from './ErrorDisplay';
 
 class Article extends Component {
     state = {
@@ -15,6 +16,14 @@ class Article extends Component {
             this.setState({
                 article,
                 isLoading: 'false'
+            })
+        }).catch(({ response }) => {
+            this.setState({
+                err: {
+                    status: response.status || 500,
+                    msg: response.msg || "Something went wrong"
+                },
+                isLoading: false
             })
         })
     }
@@ -33,8 +42,9 @@ class Article extends Component {
     }
 
     render() {
-        let { article, isLoading, voted } = this.state;
+        let { article, isLoading, voted, err } = this.state;
         if (isLoading === true) return <h2>Loading...</h2>
+        if (err) return <ErrorDisplay err={err} />
         let topicpic;
         if (article.topic === 'football') {
             topicpic = 'https://images.pexels.com/photos/47354/the-ball-stadion-football-the-pitch-47354.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';

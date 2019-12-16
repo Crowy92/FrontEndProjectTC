@@ -24,7 +24,7 @@ class Comments extends Component {
             const updatedComments = currentState.comments.map(comment => {
                 if (comment.comment_id.toString() === id.toString()) {
                     comment.votes = parseInt(comment.votes) + parseInt(value)
-                    comment.voted = true
+                    comment.voted = comment.voted === undefined ? parseInt(value) : parseInt(comment.voted) + parseInt(value);
                 }
                 return comment;
             })
@@ -38,7 +38,7 @@ class Comments extends Component {
                 const updatedComments = currentState.comments.map(comment => {
                     if (comment.comment_id.toString() === id.toString()) {
                         comment.votes = parseInt(comment.votes) - parseInt(value)
-                        comment.voted = true
+                        comment.voted -= value
                         comment.err = true
                     }
                     return comment;
@@ -92,8 +92,8 @@ class Comments extends Component {
                                     <p>Posted: {date}</p>
                                     <p className="Votes">Votes: {comment.votes}</p>
                                     <div>
-                                        {this.props.user && <button disabled={comment.voted} id={comment.comment_id} value={1} onClick={this.handleVote} className="pagebtn">˄</button>}
-                                        {this.props.user && <button disabled={comment.voted} id={comment.comment_id} value={-1} onClick={this.handleVote} className="pagebtn">˅</button>}
+                                        {this.props.user && <button disabled={comment.voted > 0} id={comment.comment_id} value={1} onClick={this.handleVote} className="pagebtn">˄</button>}
+                                        {this.props.user && <button disabled={comment.voted < 0} id={comment.comment_id} value={-1} onClick={this.handleVote} className="pagebtn">˅</button>}
                                         {this.props.user === comment.author && <button id={comment.comment_id} onClick={this.deleteComment} className="votebtnangry">🗑️</button>}
                                     </div>
                                     {comment.err && <ErrorDisplay err={comment.err} />}
@@ -103,7 +103,6 @@ class Comments extends Component {
                     })}
                 </ul>
             </div>
-
         );
     }
 }

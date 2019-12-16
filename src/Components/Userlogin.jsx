@@ -8,10 +8,10 @@ class Userlogin extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const { username } = this.state;
+        localStorage.setItem('username', username)
         const userChecker = this.props.users.map(user => {
             return user.username;
         })
-        console.log(userChecker)
         if (userChecker.includes(username)) this.props.signIn(username)
         else {
             alert('User does not exist')
