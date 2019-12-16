@@ -43,7 +43,7 @@ class App extends Component {
           <Userlogin signIn={this.SignIn} users={users} />
         </div>
         <Router primary={false}>
-          <Articles path='/' />
+          <Articles user={this.state.user} path='/' />
           <Article user={this.state.user} path='/article/:article_id' />
           <User user={this.state.user} users={this.state.users} path='/user' />
           <ArticlePoster user={this.state.user} path='/postarticle' />

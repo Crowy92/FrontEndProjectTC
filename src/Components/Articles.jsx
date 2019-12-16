@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getArticles } from './Apis';
+import { getArticles, deleteArticle } from './Apis';
 import { Link } from '@reach/router';
 import ArticlesNav from './ArticlesNav'
 
@@ -47,8 +47,18 @@ class Articles extends Component {
         this.setState({ sort_by, topic })
     }
 
+    deleteArticle = (article_id) => {
+        deleteArticle(article_id).then((response) => {
+            this.setState((currentState) => {
+                const updatedArticles = currentState.articles.filter(article => article.article_id.toString() !== article_id.toString())
+                return { articles: updatedArticles }
+            })
+        })
+    }
+
     render() {
         let { articles, isLoading, page, total_count } = this.state;
+        const { user } = this.props;
         if (isLoading === true) return <h2>Loading...</h2>
         return (
             <div>
@@ -57,19 +67,20 @@ class Articles extends Component {
                     {articles.map(article => {
                         const date = article.created_at.slice(0, 10)
                         return (
-                            <Link key={article.article_id} to={`/article/${article.article_id}`}>
-                                <li key={article.article_id}>
+                            <li key={article.article_id}>
+                                <Link key={article.article_id} to={`/article/${article.article_id}`}>
                                     <h2>{article.title}</h2>
-                                    <div className="flexRow">
-                                        <p>Votes: {article.votes}</p>
-                                        <p>Topic: {article.topic}</p>
-                                    </div>
-                                    <div className="flexRow">
-                                        <p>Author: {article.author}</p>
-                                        <p>Posted: {date}</p>
-                                    </div>
-                                </li>
-                            </Link>
+                                </Link>
+                                <div className="flexRow">
+                                    <p>Votes: {article.votes}</p>
+                                    <p>Topic: {article.topic}</p>
+                                </div>
+                                <div className="flexRow">
+                                    <p>Author: {article.author}</p>
+                                    <p>Posted: {date}</p>
+                                </div>
+                                {user === article.author && <button onClick={() => this.deleteArticle(article.article_id)} className="pagebtn">Delete</button>}
+                            </li>
                         )
                     })}
                 </ul>

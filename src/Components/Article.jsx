@@ -59,7 +59,7 @@ class Article extends Component {
 
                     <h2>{article.title}</h2>
                     <div className="flexRowCentre">
-                        <img className='topicpic' src={topicpic} />
+                        <img alt="topic" className='topicpic' src={topicpic} />
                         <div>
                             <div className="flexRowCentre">
                                 <p className="Votes">Votes: {article.votes}</p>
