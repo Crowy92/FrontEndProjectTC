@@ -5,6 +5,7 @@ import { Router } from '@reach/router';
 import { getUsers } from './Components/Apis'
 import User from './Components/User'
 import Articles from './Components/Articles';
+import PostTopic from './Components/PostTopic'
 import Userlogin from './Components/Userlogin';
 import ArticlePoster from './Components/ArticlePoster'
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -47,6 +48,7 @@ class App extends Component {
           <Article user={this.state.user} path='/article/:article_id' />
           <User user={this.state.user} users={this.state.users} path='/user' />
           <ArticlePoster user={this.state.user} path='/postarticle' />
+          <PostTopic user={this.state.user} path='/posttopic' />
           <ErrorDisplay default />
         </Router>
       </div>

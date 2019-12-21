@@ -62,7 +62,7 @@ class Articles extends Component {
         if (isLoading === true) return <h2>Loading...</h2>
         return (
             <div>
-                < ArticlesNav handleSubmit={this.handleSubmit} />
+                < ArticlesNav handleSubmit={this.handleSubmit} user={user} />
                 <ul>
                     {articles.map(article => {
                         const date = article.created_at.slice(0, 10)

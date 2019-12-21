@@ -29,6 +29,7 @@ class ArticlesNav extends Component {
 
     render() {
         let { topics } = this.state;
+        const { user } = this.props;
         if (!topics) return <h2>Loading...</h2>
         return (
             <div className="navigation">
@@ -50,6 +51,12 @@ class ArticlesNav extends Component {
                                 </div>
                             )
                         })}
+                        <div key="seperator">
+                            <label>____________</label>
+                        </div>
+                        <div key="all">
+                            <label onChange={this.handleTopics}><input className="dropdown" name="topic" type="radio" value="" />All Topics</label>
+                        </div>
                     </div>
                 </div>
                 <div className="dropdown">
