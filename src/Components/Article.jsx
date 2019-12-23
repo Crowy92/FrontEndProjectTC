@@ -52,7 +52,9 @@ class Article extends Component {
             topicpic = 'https://images.pexels.com/photos/2284166/pexels-photo-2284166.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
         } else if (article.topic === 'coding') {
             topicpic = 'https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-        }
+        } else if (article.topic === 'Film and TV') {
+            topicpic = 'https://images.pexels.com/photos/2786744/pexels-photo-2786744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+        } else topicpic = 'https://images.pexels.com/photos/3361704/pexels-photo-3361704.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
         return (
             <div>
                 <div className='container'>

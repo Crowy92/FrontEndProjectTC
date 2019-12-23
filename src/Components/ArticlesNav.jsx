@@ -29,7 +29,6 @@ class ArticlesNav extends Component {
 
     render() {
         let { topics } = this.state;
-        const { user } = this.props;
         if (!topics) return <h2>Loading...</h2>
         return (
             <div className="navigation">

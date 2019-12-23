@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const getArticles = (topic, p, sort_by) => {
-    console.log(topic, p, sort_by)
     return axios.get('https://tom-crowthers-ncoders-project.herokuapp.com/api/articles', { params: { topic, p, sort_by } })
         .then(({ data }) => {
             return {
@@ -80,5 +79,12 @@ export const postArticle = (title, body, author, topic) => {
     return axios.post(`https://tom-crowthers-ncoders-project.herokuapp.com/api/articles`, { title, body, author, topic })
         .then(({ data }) => {
             return data.article
+        })
+}
+
+export const postTopic = (slug, description) => {
+    return axios.post(`https://tom-crowthers-ncoders-project.herokuapp.com/api/topics`, { slug, description })
+        .then(({ data }) => {
+            return data.topic
         })
 }

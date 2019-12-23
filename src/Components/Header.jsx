@@ -15,11 +15,13 @@ const Header = (props) => {
                     </Link>
                     {user && <Link to="/postarticle">
                         <button className="pagebtn-large">
-                            Post Article
+                            New Article
                         </button>
                     </Link>}
                     {user === "grumpy19" && <Link to="/posttopic">
-                        <button className="pagebtn-large">Add Topic</button>
+                        <button className="pagebtn-large">
+                            Add Topic
+                        </button>
                     </Link>}
                 </div>
                 {user ? <p className="loginDone">Logged in as: <Link to="/user">{user}</Link></p> : <p className="loginPrompt">Login for more features</p>}

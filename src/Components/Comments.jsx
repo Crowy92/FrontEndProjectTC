@@ -94,7 +94,7 @@ class Comments extends Component {
                                     <div>
                                         {this.props.user && <button disabled={comment.voted > 0} id={comment.comment_id} value={1} onClick={this.handleVote} className="pagebtn">˄</button>}
                                         {this.props.user && <button disabled={comment.voted < 0} id={comment.comment_id} value={-1} onClick={this.handleVote} className="pagebtn">˅</button>}
-                                        {this.props.user === comment.author && <button id={comment.comment_id} onClick={this.deleteComment} className="votebtnangry">🗑️</button>}
+                                        {this.props.user === comment.author && <button id={comment.comment_id} onClick={this.deleteComment} className="pagebtn">Delete</button>}
                                     </div>
                                     {comment.err && <ErrorDisplay err={comment.err} />}
                                 </div>
