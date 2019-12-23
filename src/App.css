@@ -11,6 +11,28 @@
   border-radius: 150px;
 }
 
+.fittedtop {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  background-color: lightgray;
+}
+
+.news {
+  max-width: 1200px;
+  max-height: 300px;
+}
+
+.carousel {
+  width: 60%;
+  height: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
 .container {
   padding: 10px 16px;
   box-shadow: 0 6px 12px 0 rgba(24, 65, 15, 0.2);
@@ -211,7 +233,7 @@ li:hover {
   border-radius: 5px;
   background-color: rgb(53, 143, 73); 
   color: white;
-  width: 100px;
+  width: 110px;
   border-style: solid;
   border-color: gray;
   height: 55px;

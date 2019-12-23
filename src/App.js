@@ -38,7 +38,9 @@ class App extends Component {
     const { users } = this.state;
     return (
       <div className="App">
-        <img alt="news-logo" className="logo" src="https://storiesflistgv2.blob.core.windows.net/stories/2017/10/newsbanner_24Aug_b.jpg" />
+        <div className="fittedtop">
+          <img alt="news-logo" className="news" src="https://storiesflistgv2.blob.core.windows.net/stories/2017/10/newsbanner_24Aug_b.jpg" />
+        </div>
         <div className="flexRowNav">
           <Header user={this.state.user} />
           <Userlogin signIn={this.SignIn} users={users} />
