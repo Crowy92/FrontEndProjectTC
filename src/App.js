@@ -35,20 +35,20 @@ class App extends Component {
   }
 
   render() {
-    const { users } = this.state;
+    const { users, user } = this.state;
     return (
       <div className="App">
         <div className="fittedtop">
           <img alt="news-logo" className="news" src="https://storiesflistgv2.blob.core.windows.net/stories/2017/10/newsbanner_24Aug_b.jpg" />
         </div>
         <div className="flexRowNav">
-          <Header user={this.state.user} />
-          <Userlogin signIn={this.SignIn} users={users} />
+          <Header user={this.state.user} signIn={this.SignIn} />
+          {user === "" && <Userlogin signIn={this.SignIn} users={users} />}
         </div>
         <Router primary={false}>
           <Articles user={this.state.user} path='/' />
           <Article user={this.state.user} path='/article/:article_id' />
-          <User user={this.state.user} users={this.state.users} path='/user' />
+          <User user={user} users={users} path='/user' />
           <ArticlePoster user={this.state.user} path='/postarticle' />
           <PostTopic user={this.state.user} path='/posttopic' />
           <ErrorDisplay default />

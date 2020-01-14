@@ -3,7 +3,12 @@ import { Link } from "@reach/router";
 import React from 'react';
 
 const Header = (props) => {
-    const { user } = props;
+    const { user, signIn } = props;
+
+    const handleclick = () => {
+        signIn("")
+    }
+
     return (
         <div>
             <div className="navigation">
@@ -24,7 +29,10 @@ const Header = (props) => {
                         </button>
                     </Link>}
                 </div>
-                {user ? <p className="loginDone">Logged in as: <Link to="/user">{user}</Link></p> : <p className="loginPrompt">Login for more features</p>}
+                {user ? <p className="loginDone">Logged in as: <Link to="/user">{user}</Link></p> : <p className="loginPrompt">Login for more features - e.g. "tickle122"</p>}
+                {user && <button className="pagebtn-large" onClick={handleclick}>
+                    Log out
+                        </button>}
             </div>
         </div >
     );
