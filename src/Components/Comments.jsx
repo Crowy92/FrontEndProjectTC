@@ -89,7 +89,7 @@ class Comments extends Component {
                                 <h4>Author: {comment.author}</h4>
                                 <p>{comment.body}</p>
                                 <div className="flexRow">
-                                    <p>Posted: {date}</p>
+                                    <p className="Italics">Posted: {date}</p>
                                     <p className="Votes">Votes: {comment.votes}</p>
                                     <div>
                                         {this.props.user && <button disabled={comment.voted > 0} id={comment.comment_id} value={1} onClick={this.handleVote} className="pagebtn">˄</button>}

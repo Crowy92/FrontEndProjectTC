@@ -72,12 +72,12 @@ class Articles extends Component {
                                     <h2>{article.title}</h2>
                                 </Link>
                                 <div className="flexRow">
-                                    <p>Votes: {article.votes}</p>
-                                    <p>Topic: {article.topic}</p>
+                                    <p className="Votes">Votes: {article.votes}</p>
+                                    <p className="Votes">Topic: {article.topic}</p>
                                 </div>
                                 <div className="flexRow">
-                                    <p>Author: {article.author}</p>
-                                    <p>Posted: {date}</p>
+                                    <p className="Votes">Author: {article.author}</p>
+                                    <p className="Italics">Posted: {date}</p>
                                 </div>
                                 {user === article.author && <button onClick={() => this.deleteArticle(article.article_id)} className="pagebtn">Delete</button>}
                             </li>
