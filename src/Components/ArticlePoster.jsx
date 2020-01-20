@@ -64,7 +64,7 @@ class ArticlePoster extends Component {
                 <form className="containerPostArticle">
                     <input className="postArticleInput" value={title} onChange={this.handleText} name='title' placeholder="article title" type="text"></input>
                     <textarea className="postArticleText" value={body} onChange={this.handleText} name='body' placeholder="article body"></textarea>
-                    <div className="navigation">
+                    <div>
                         <div className="dropdown">
                             <button onClick={this.handleClick} className="dropbtn">Topics</button>
                             <div className="dropdown-content">
@@ -77,10 +77,10 @@ class ArticlePoster extends Component {
                                 })}
                             </div>
                         </div>
+                        <button onClick={this.handleSubmit} disabled={!topic || !body || !title} className="pagebtn-large">
+                            <p >Post</p>
+                        </button>
                     </div>
-                    <button onClick={this.handleSubmit} disabled={!topic || !body || !title} className="pagebtn">
-                        <p >Post</p>
-                    </button>
                 </form>
                 <CarouselProvider
                     className="carousel"
